@@ -1,4 +1,5 @@
-import type { Locale } from "./usage.shared";
+import type { Locale } from "../shared/usage";
+import { browserLanguages, readWebLocale, rememberWebLocale } from "./web";
 
 export interface Messages {
   languageEnglish: string;
@@ -154,27 +155,15 @@ export const messagesByLocale: Record<Locale, Messages> = {
   },
 };
 
-const storageKey = "sub2api-usage-locale";
-
 export function localeTag(locale: Locale): string {
   return locale === "zh" ? "zh-CN" : "en-US";
 }
 
 export function detectLocale(platform: "ios" | "android" | "web"): Locale {
-  if (platform === "web" && typeof window !== "undefined") {
-    try {
-      const stored = window.localStorage.getItem(storageKey);
-      if (stored === "en" || stored === "zh") return stored;
-    } catch {
-      // Storage can be unavailable in restricted browser contexts.
-    }
-  }
+  const stored = platform === "web" ? readWebLocale() : null;
+  if (stored) return stored;
 
-  const candidates: string[] = [];
-  if (platform === "web" && typeof navigator !== "undefined") {
-    if (Array.isArray(navigator.languages)) candidates.push(...navigator.languages);
-    if (navigator.language) candidates.push(navigator.language);
-  }
+  const candidates: string[] = platform === "web" ? browserLanguages() : [];
   try {
     candidates.push(Intl.DateTimeFormat().resolvedOptions().locale);
   } catch {
@@ -184,11 +173,5 @@ export function detectLocale(platform: "ios" | "android" | "web"): Locale {
 }
 
 export function rememberLocale(locale: Locale, platform: "ios" | "android" | "web") {
-  if (platform === "web" && typeof window !== "undefined") {
-    try {
-      window.localStorage.setItem(storageKey, locale);
-    } catch {
-      // The selected locale still applies for the current surface session.
-    }
-  }
+  if (platform === "web") rememberWebLocale(locale);
 }

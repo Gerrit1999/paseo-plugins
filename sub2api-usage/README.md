@@ -1,6 +1,6 @@
 # Sub2API Usage Plugin
 
-A Paseo v0.7 plugin that queries Sub2API's `GET /v1/usage` endpoint and displays account usage in the Paseo client.
+A Paseo v0.8 plugin that queries Sub2API's `GET /v1/usage` endpoint and displays account usage in the Paseo client.
 
 ## Features
 
@@ -16,7 +16,7 @@ A Paseo v0.7 plugin that queries Sub2API's `GET /v1/usage` endpoint and displays
 From this repository:
 
 ```bash
-paseo plugin add Gerrit1999/paseo-plugins --path sub2api-usage
+paseo plugin add Gerrit1999/paseo-plugins:sub2api-usage
 ```
 
 From a local clone:
