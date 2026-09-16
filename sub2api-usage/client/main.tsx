@@ -1,6 +1,6 @@
-import type { PluginSurfaceProps, PluginTheme } from "@getpaseo/plugin";
-import { useRpc } from "@getpaseo/plugin";
-import { Icon } from "@getpaseo/plugin/react-native";
+import type { PluginTheme } from "@getpaseo/plugin";
+import { type PluginSurfaceProps, useRpc } from "@getpaseo/plugin/client";
+import { Icon } from "@getpaseo/plugin/client/react-native";
 import { useQuery } from "@tanstack/react-query";
 import React, { useMemo, useState } from "react";
 import {
@@ -17,9 +17,9 @@ import {
   messagesByLocale,
   rememberLocale,
   type Messages,
-} from "./i18n.client";
-import type { Locale, Sub2ApiUsage, UsageAmount, UsageStats } from "./usage.shared";
-import { getSub2ApiUsage } from "./usage.shared";
+} from "./i18n";
+import type { Locale, Sub2ApiUsage, UsageAmount, UsageStats } from "../shared/usage";
+import { getSub2ApiUsage } from "../shared/usage";
 
 type Styles = ReturnType<typeof createStyles>;
 

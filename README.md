@@ -11,7 +11,7 @@ Paseo plugins maintained as independent, self-contained npm projects.
 Install plugins individually. There is no repository-wide installation or npm workspace.
 
 ```bash
-paseo plugin add Gerrit1999/paseo-plugins --path sub2api-usage
+paseo plugin add Gerrit1999/paseo-plugins:sub2api-usage
 ```
 
 For local development:

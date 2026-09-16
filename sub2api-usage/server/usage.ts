@@ -1,6 +1,6 @@
 import type { PluginHandlerContext } from "@getpaseo/plugin/server";
 import { z } from "zod";
-import type { Locale, Sub2ApiUsage, UsageStats } from "./usage.shared";
+import type { Locale, Sub2ApiUsage, UsageStats } from "../shared/usage";
 
 const rawStatsSchema = z
   .object({
